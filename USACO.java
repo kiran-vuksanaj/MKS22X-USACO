@@ -18,9 +18,15 @@ public class USACO{
     return -1;
   }
   public static int[][] getMap(Scanner sca,int r,int c){
-    return null;
+    int[][] out = new int[r][c];
+    for(int i=0;i<out.length;i++){
+      for(int j=0;j<out[i].length;j++){
+        out[r][c] = sca.nextInt();
+      }
+    }
+    return out;
   }
   public static void stomp(int r,int c,int depth,int[][] map){
-    
+
   }
 }
