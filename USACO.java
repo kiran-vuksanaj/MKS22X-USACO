@@ -40,17 +40,16 @@ public class USACO{
       int n = sca.nextInt();
       int m = sca.nextInt();
       int t = sca.nextInt();
-      System.out.println(n);
-      System.out.println(m);
-      System.out.println(t);
       int[][] map = getMapSilver(sca,n,m);
       int r1 = sca.nextInt();
       int c1 = sca.nextInt();
       int r2 = sca.nextInt();
       int c2 = sca.nextInt();
-      for(int[] row : map){
-        System.out.println(Arrays.toString(row));
+      map[r1][c1] = 1;
+      for(int i=1;i<=t;i++){
+        map = stepForward(map);
       }
+      return map[r2][c2];
     }catch(FileNotFoundException e){
       System.out.println("file not found");
     }
@@ -66,5 +65,8 @@ public class USACO{
       }
     }
     return out;
+  }
+  public static int[][] stepForward(int[][] map){
+    return null;
   }
 }
