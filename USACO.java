@@ -1,6 +1,9 @@
 import java.util.*;
 import java.io.*;
 public class USACO{
+  public static void main(String[] args){
+    silver("testCases/ctravel.1.in");
+  }
   public static int bronze(String filename){
     try{
       Scanner sca = new Scanner( new File(filename) );
@@ -37,20 +40,26 @@ public class USACO{
       int n = sca.nextInt();
       int m = sca.nextInt();
       int t = sca.nextInt();
+      System.out.println(n);
+      System.out.println(m);
+      System.out.println(t);
       int[][] map = getMapSilver(sca,n,m);
       int r1 = sca.nextInt();
       int c1 = sca.nextInt();
       int r2 = sca.nextInt();
       int c2 = sca.nextInt();
+      for(int[] row : map){
+        System.out.println(Arrays.toString(row));
+      }
     }catch(FileNotFoundException e){
-
+      System.out.println("file not found");
     }
     return -1;
   }
   public static int[][] getMapSilver(Scanner sca,int r,int c){
     int[][] out = new int[r][c];
     for(int i=0;i<r;i++){
-      String line = sca.nextLine();
+      String line = sca.next();
       char[] chrs = line.toCharArray();
       for(int j=0;j<c;j++){
         if(chrs[j] == '*') out[i][j] = -1;
