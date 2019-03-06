@@ -29,4 +29,33 @@ public class USACO{
   public static void stomp(int r,int c,int depth,int[][] map){
 
   }
+
+
+  public static int silver(String filename){
+    try{
+      Scanner sca = new Scanner( new File(filename) );
+      int n = sca.nextInt();
+      int m = sca.nextInt();
+      int t = sca.nextInt();
+      int[][] map = getMapSilver(sca,n,m);
+      int r1 = sca.nextInt();
+      int c1 = sca.nextInt();
+      int r2 = sca.nextInt();
+      int c2 = sca.nextInt();
+    }catch(FileNotFoundException e){
+
+    }
+    return -1;
+  }
+  public static int[][] getMapSilver(Scanner sca,int r,int c){
+    int[][] out = new int[r][c];
+    for(int i=0;i<r;i++){
+      String line = sca.nextLine();
+      char[] chrs = line.toCharArray();
+      for(int j=0;j<c;j++){
+        if(chrs[j] == '*') out[i][j] = -1;
+      }
+    }
+    return out;
+  }
 }
