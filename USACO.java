@@ -32,7 +32,23 @@ public class USACO{
     return out;
   }
   public static void stomp(int r,int c,int depth,int[][] map){
-
+    int depthTo = maxValAmong(r,r+3,c,c+3,map) - depth;
+    for(int i=r;i<r+3;i++){
+      for(int j=c;j<c+3;j++){
+        if(map[i][j] > depthTo){
+          map[i][j] = depthTo;
+        }
+      }
+    }
+  }
+  public static int maxValAmong(int r,int rFin,int c,int cFin,int[][] map){
+    int out = map[r][c];
+    while(r<rFin){
+      while(c<cFin){
+        if(out > map[r][c]) out = map[r][c];
+      }
+    }
+    return out;
   }
 
 
