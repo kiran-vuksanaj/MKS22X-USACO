@@ -71,8 +71,23 @@ public class USACO{
     for(int i=0;i<out.length;i++){
       for(int j=0;j<out.length;j++){
         //case: if a tree tile, leave tree tile and stop
+        if(map[i][j] == -1){
+          out[i][j] = -1;
+        }else if(map[i][j] != 0){
         //else: add value of the tile to the four adjacent (non-tree) spaces
+          int val = map[i][j];
+          addToNonTree(map,out,i+1,j,val);
+          addToNonTree(map,out,i,j+1,val);
+          addToNonTree(map,out,i-1,j,val);
+          addToNonTree(map,out,i,j-1,val);
+        }
       }
+    }
+    return out;
+  }
+  public static void addToNonTree(int[][] orig,int[][]map,int r,int c,int val){
+    if(orig[r][c] != -1){
+      map[r][c] += val;
     }
   }
 }
