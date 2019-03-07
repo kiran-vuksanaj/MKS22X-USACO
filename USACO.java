@@ -2,7 +2,9 @@ import java.util.*;
 import java.io.*;
 public class USACO{
   public static void main(String[] args){
-    silver("testCases/ctravel.1.in");
+    for(int i=1;i<=5;i++){
+      System.out.println(silver("testCases/ctravel."+i+".in"));
+    }
   }
   public static int bronze(String filename){
     try{
@@ -41,12 +43,22 @@ public class USACO{
       int m = sca.nextInt();
       int t = sca.nextInt();
       int[][] map = getMapSilver(sca,n,m);
-      int r1 = sca.nextInt();
-      int c1 = sca.nextInt();
-      int r2 = sca.nextInt();
-      int c2 = sca.nextInt();
+      int r1 = sca.nextInt()-1;
+      int c1 = sca.nextInt()-1;
+      int r2 = sca.nextInt()-1;
+      int c2 = sca.nextInt()-1;
       map[r1][c1] = 1;
       for(int i=1;i<=t;i++){
+        /* PRINT MAP AT STAGE
+        System.out.println("    "+i);
+        for(int[] row : map){
+          for(int cell : row){
+            System.out.print(cell+"\t");
+          }
+          System.out.println("");
+        }
+        System.out.println("\n\n");
+        */
         map = stepForward(map);
       }
       return map[r2][c2];
@@ -69,13 +81,14 @@ public class USACO{
   public static int[][] stepForward(int[][] map){
     int[][] out = new int[map.length][map[0].length];
     for(int i=0;i<out.length;i++){
-      for(int j=0;j<out.length;j++){
+      for(int j=0;j<out[i].length;j++){
         //case: if a tree tile, leave tree tile and stop
         if(map[i][j] == -1){
           out[i][j] = -1;
         }else if(map[i][j] != 0){
         //else: add value of the tile to the four adjacent (non-tree) spaces
           int val = map[i][j];
+          //System.out.println("\t"+i+","+j+": "+map[i][j]);
           addToNonTree(map,out,i+1,j,val);
           addToNonTree(map,out,i,j+1,val);
           addToNonTree(map,out,i-1,j,val);
@@ -86,8 +99,11 @@ public class USACO{
     return out;
   }
   public static void addToNonTree(int[][] orig,int[][]map,int r,int c,int val){
-    if(orig[r][c] != -1){
+    if(r>=0 && r<orig.length &&
+       c>=0 && c<orig[r].length &&
+       orig[r][c] != -1){
       map[r][c] += val;
     }
+    //else System.out.println("out of bounds "+r+","+c);
   }
 }
