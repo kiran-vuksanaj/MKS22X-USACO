@@ -67,6 +67,12 @@ public class USACO{
     return out;
   }
   public static int[][] stepForward(int[][] map){
-    return null;
+    int[][] out = new int[map.length][map[0].length];
+    for(int i=0;i<out.length;i++){
+      for(int j=0;j<out.length;j++){
+        //case: if a tree tile, leave tree tile and stop
+        //else: add value of the tile to the four adjacent (non-tree) spaces
+      }
+    }
   }
 }
