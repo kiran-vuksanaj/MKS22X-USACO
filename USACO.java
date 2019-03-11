@@ -19,8 +19,9 @@ public class USACO{
         for(int[] row : map){
           //System.out.println(Arrays.toString(row));
         }
-        System.out.println("");
+        //System.out.println("");
       }
+      return volumeUnder(map,e)*72*72;
     }catch(FileNotFoundException e){
 
     }
@@ -42,7 +43,7 @@ public class USACO{
         if(maxVal < map[r+i][c+j]) maxVal = map[r+i][c+j];
       }
     }
-    System.out.println(maxVal);
+    //System.out.println(maxVal);
     int depthTo = maxVal - depth;
     for(int i=r;i<r+3;i++){
       for(int j=c;j<c+3;j++){
@@ -123,5 +124,14 @@ public class USACO{
       map[r][c] += val;
     }
     //else System.out.println("out of bounds "+r+","+c);
+  }
+  public static int volumeUnder(int[][] map,int depth){
+    int out = 0;
+    for(int[] row : map){
+      for(int cell : row){
+        if(cell < depth) out += (depth - cell);
+      }
+    }
+    return out;
   }
 }
