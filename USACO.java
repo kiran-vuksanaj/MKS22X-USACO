@@ -3,7 +3,7 @@ import java.io.*;
 public class USACO{
   public static void main(String[] args){
     for(int i=1;i<=5;i++){
-      System.out.println(silver("testCases/ctravel."+i+".in"));
+      System.out.println(bronze("testCases/makelake."+i+".in"));
     }
   }
   public static int bronze(String filename){
@@ -15,7 +15,11 @@ public class USACO{
       int n = sca.nextInt();
       int[][] map = getMap(sca,r,c);
       while(sca.hasNextInt()){
-        stomp(sca.nextInt(),sca.nextInt(),sca.nextInt(),map);
+        stomp(sca.nextInt()-1,sca.nextInt()-1,sca.nextInt(),map);
+        for(int[] row : map){
+          //System.out.println(Arrays.toString(row));
+        }
+        System.out.println("");
       }
     }catch(FileNotFoundException e){
 
@@ -26,13 +30,20 @@ public class USACO{
     int[][] out = new int[r][c];
     for(int i=0;i<out.length;i++){
       for(int j=0;j<out[i].length;j++){
-        out[r][c] = sca.nextInt();
+        out[i][j] = sca.nextInt();
       }
     }
     return out;
   }
   public static void stomp(int r,int c,int depth,int[][] map){
-    int depthTo = maxValAmong(r,r+3,c,c+3,map) - depth;
+    int maxVal = map[r][c];
+    for(int i=0;i<3;i++){
+      for(int j=0;j<3;j++){
+        if(maxVal < map[r+i][c+j]) maxVal = map[r+i][c+j];
+      }
+    }
+    System.out.println(maxVal);
+    int depthTo = maxVal - depth;
     for(int i=r;i<r+3;i++){
       for(int j=c;j<c+3;j++){
         if(map[i][j] > depthTo){
@@ -40,15 +51,6 @@ public class USACO{
         }
       }
     }
-  }
-  public static int maxValAmong(int r,int rFin,int c,int cFin,int[][] map){
-    int out = map[r][c];
-    while(r<rFin){
-      while(c<cFin){
-        if(out > map[r][c]) out = map[r][c];
-      }
-    }
-    return out;
   }
 
 
